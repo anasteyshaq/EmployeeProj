@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,10 +8,10 @@ using System.Data.SqlClient;
 
 namespace EmployeeProj
 {
-     class Database
-    {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source=DESKTOP-U94DDGH\SQLEXPRESS;
-        Initial Catalog=EmployeesDb;Integrated Security = true");
+     class AppConnection
+     {
+        private static string ConnectionString => ConfigurationManager.ConnectionStrings["cn"].ConnectionString;
+        SqlConnection sqlConnection = new SqlConnection(ConnectionString);
 
         public void openConnection()
         {
